@@ -21,5 +21,23 @@ type Participant struct {
 }
 
 func CalculateTeams(participants []Participant) int {
-	return 0
+	programadores := 0
+	matematicos := 0
+
+	for _, participant := range participants {
+		if participant.Role == "Programmer" {
+			programadores++
+		} else if participant.Role == "Mathematician" {
+			matematicos++
+		}
+	}
+
+	return main((programadores+matematicos)/4, main(programadores, matematicos))
+}
+
+func main(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
 }

@@ -1,5 +1,7 @@
 package q5
 
+import "fmt"
+
 //Um novo serviço de e-mail, chamado "CEUBdesk", será inaugurado no CEUB em um futuro próximo. A administração do
 //site quer lançar o projeto o mais rápido possível, por isso eles pedem a sua ajuda. Você é sugerido(a) a implementar o
 //protótipo do sistema de registro do site. O sistema deve funcionar com o seguinte princípio.
@@ -12,5 +14,18 @@ package q5
 //o menor `i` é encontrado de forma que namei ainda não exista no banco de dados.
 
 func Register(names []string) []string {
-	return nil
+	registronome := make(map[string]int)
+	resultado := make([]string, len(names))
+
+	for indice, nome := range names {
+		contas, existe := registronome[nome]
+		if !existe {
+			registronome[nome] = 1
+			resultado[indice] = "OK"
+		} else {
+			registronome[nome]++
+			resultado[indice] = fmt.Sprintf("%s%d", nome, contas)
+		}
+	}
+	return resultado
 }

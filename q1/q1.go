@@ -13,5 +13,19 @@ package q1
 //os seus animais na loja. Cada um dos seus cães e gatos deve receber um pacote de ração adequado para sua espécie.
 
 func CanBuyFood(stock map[string]int, dogs, cats int) bool {
+	if stock["dog"] >= dogs && stock["cat"] >= cats {
+		return true
+	}
+
+	neededUniversal := 0
+	if stock["dog"] < dogs {
+		neededUniversal += dogs - stock["dog"]
+	}
+	if stock["cat"] < cats {
+		neededUniversal += cats - stock["cat"]
+	}
+	if stock["universal"] >= neededUniversal {
+		return true
+	}
 	return false
 }
